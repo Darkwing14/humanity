@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Humanity Search</title>
+<style>
+    body {
+        background: #fafafa;
+        font-family: Arial, sans-serif;
+        text-align: center;
+        padding-top: 15vh;
+    }
+    input[type="text"] {
+        width: 50%;
+        padding: 10px;
+        font-size: 16px;
+    }
+    button {
+        padding: 10px 20px;
+        font-size: 16px;
+        margin-left: 5px;
+        cursor: pointer;
+    }
+    label {
+        display: block;
+        margin-top: 15px;
+        font-size: 14px;
+        color: #333;
+    }
+</style>
+</head>
+<body>
+
+<h1>Humanity</h1>
+<p>Search Google — minus the AI sludge.</p>
+
+<input type="text" id="query" placeholder="Type your search...">
+<button onclick="searchHumanity()">Search</button>
+
+<label>
+    <input type="checkbox" id="filterAI" checked>
+    Filter AI content (before:2022)
+</label>
+
+<script>
+function searchHumanity() {
+    let query = document.getElementById("query").value.trim();
+    let filter = document.getElementById("filterAI").checked;
+    
+    if (filter) {
+        query += " before:2022";
+    }
+    
+    let url = "https://www.google.com/search?q=" + encodeURIComponent(query) + "&udm=14";
+    window.location.href = url;
+}
+</script>
+
+</body>
+</html>
+
