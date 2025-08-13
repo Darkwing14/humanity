@@ -1,5 +1,4 @@
-<html>
-<head>
+<html><head>
 <meta charset="UTF-8">
 <title>Humanity Search</title>
 <style>
@@ -22,6 +21,7 @@
         margin-left: 5px;
         cursor: pointer;
         border-radius: 8px;
+        border: none;
     }
     label {
         display: block;
@@ -29,33 +29,84 @@
         font-size: 14px;
         color: #333;
     }
+    /* Tabs styling */
+    .tabs {
+        margin: 20px 0;
+    }
+    .tab {
+        padding: 8px 16px;
+        margin: 0 5px;
+        border-radius: 6px;
+        background: #eee;
+        cursor: pointer;
+        transition: background 0.2s, box-shadow 0.2s;
+        border: none;
+        font-size: 14px;
+    }
+    .tab.active {
+        background: #b0c4de;
+        box-shadow: 0 0 8px #3399ff;
+    }
 </style>
 </head>
 <body>
     <a href="https://darkwing14.github.io/Darkwing14/">Back to Darkwing14's website.</a>
     <h1>Humanity</h1>
     <p>Search Google — minus the AI sludge.</p>
+
+    <!-- Tabs -->
+    <div class="tabs">
+        <button class="tab active" onclick="setSearchType('web', this)">Web</button>
+        <button class="tab" onclick="setSearchType('images', this)">Images</button>
+        <button class="tab" onclick="setSearchType('videos', this)">Videos</button>
+        <button class="tab" onclick="setSearchType('shop', this)">Shop</button>
+    </div>
+
     <input type="text" id="query" placeholder="Type your search...">
     <button onclick="searchHumanity()">Search</button>
     <label>
         <input type="checkbox" id="filterAI" checked>
         Filter AI content by showing pre-2022 results. (Turn off if you need cutting-edge info.)
     </label>
+
 <script>
+let searchType = 'web';
+
+function setSearchType(type, element) {
+    searchType = type;
+    document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+    element.classList.add('active');
+}
+
 function searchHumanity() {
     let query = document.getElementById("query").value.trim();
     let filter = document.getElementById("filterAI").checked;
+
     if (filter) {
         query += " before:2022";
     }
-    let url = "https://www.google.com/search?q=" + encodeURIComponent(query) + "&udm=14";
+
+    // base url
+    let url = "https://www.google.com/search?q=" + encodeURIComponent(query);
+
+    // Change udm based on searchType
+    if (searchType === 'web') {
+        url += "&udm=14"; // normal web
+    } else if (searchType === 'images') {
+        url += "&udm=18"; // image mode
+    } else if (searchType === 'videos') {
+        url += "&udm=12"; // video mode
+    } else if (searchType === 'shop') {
+        url += "&udm=5"; // shopping mode
+    }
+
     window.location.href = url;
 }
+
 document.getElementById("query").addEventListener("keypress", function(event) {
     if (event.key === "Enter") {
         searchHumanity();
     }
 });
 </script>
-</body>
-</html>
+</body></html>
