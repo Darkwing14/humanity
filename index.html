@@ -1,4 +1,5 @@
-<html><head>
+<html>
+<head>
 <meta charset="UTF-8">
 <title>Humanity Search</title>
 <style>
@@ -12,12 +13,15 @@
         width: 50%;
         padding: 10px;
         font-size: 16px;
+        border-radius: 12px;
+        border: 1px solid #ccc;
     }
     button {
         padding: 10px 20px;
         font-size: 16px;
         margin-left: 5px;
         cursor: pointer;
+        border-radius: 8px;
     }
     label {
         display: block;
@@ -28,36 +32,30 @@
 </style>
 </head>
 <body>
-
     <a href="https://darkwing14.github.io/Darkwing14/">Back to Darkwing14's website.</a>
-
-
-<h1>Humanity</h1>
-<p>Search Google — minus the AI sludge.</p>
-
-<input type="text" id="query" placeholder="Type your search...">
-<button onclick="searchHumanity()">Search</button>
-
-<label>
-    <input type="checkbox" id="filterAI" checked="">
-    Filter AI content (before:2022)
-</label>
-
+    <h1>Humanity</h1>
+    <p>Search Google — minus the AI sludge.</p>
+    <input type="text" id="query" placeholder="Type your search...">
+    <button onclick="searchHumanity()">Search</button>
+    <label>
+        <input type="checkbox" id="filterAI" checked>
+        Filter AI content by showing pre-2022 results. (Turn off if you need cutting-edge info.)
+    </label>
 <script>
 function searchHumanity() {
     let query = document.getElementById("query").value.trim();
     let filter = document.getElementById("filterAI").checked;
-    
     if (filter) {
         query += " before:2022";
     }
-    
     let url = "https://www.google.com/search?q=" + encodeURIComponent(query) + "&udm=14";
     window.location.href = url;
 }
+document.getElementById("query").addEventListener("keypress", function(event) {
+    if (event.key === "Enter") {
+        searchHumanity();
+    }
+});
 </script>
-
-
-
-
-</body></html>
+</body>
+</html>
