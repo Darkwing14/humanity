@@ -1,0 +1,73 @@
+<html><head>
+<meta charset="UTF-8">
+<title>Humanity Search</title>
+<style>
+    body {
+        background: #102030;
+        font-family: Arial, sans-serif;
+        text-align: center;
+        padding-top: 15vh;
+    }
+    input[type="text"] {
+        width: 50%;
+        padding: 10px;
+        font-size: 16px;
+        border-radius: 12px;
+        border: 1px solid #ccc;
+    }
+    button {
+        padding: 10px 20px;
+        font-size: 16px;
+        margin-left: 5px;
+        cursor: pointer;
+        border-radius: 8px;
+    }
+    label {
+        display: block;
+        margin-top: 15px;
+        font-size: 14px;
+        color: #333;
+    }
+</style>
+</head>
+<body><a href="https://darkwing14.github.io/Darkwing14/">Back to Darkwing14's website.</a>
+    <br>
+    <br>
+    <a href="https://darkwing14.github.io/humanity/darkmode/" style="
+    display: inline-block;
+    padding: 10px 20px;
+    background: #eee;
+    color: #333;
+    border-radius: 8px;
+    text-decoration: none;
+    cursor: pointer;
+">Disable Dark Mode</a>
+    <br>
+    <br>
+    <h1>Humanity</h1>
+    <p>Search Google — minus the AI sludge.</p>
+    <input type="text" id="query" placeholder="Type your search...">
+    <button onclick="searchHumanity()">Search</button>
+    <label>
+        <input type="checkbox" id="filterAI" checked="">
+        Filter AI content by showing pre-2022 results. (Turn off if you need cutting-edge info.)
+    </label>
+<script>
+function searchHumanity() {
+    let query = document.getElementById("query").value.trim();
+    let filter = document.getElementById("filterAI").checked;
+    if (filter) {
+        query += " before:2022";
+    }
+    let url = "https://www.google.com/search?q=" + encodeURIComponent(query) + "&udm=14";
+    window.location.href = url;
+}
+document.getElementById("query").addEventListener("keypress", function(event) {
+    if (event.key === "Enter") {
+        searchHumanity();
+    }
+});
+</script>
+
+
+</body></html>
