@@ -1,0 +1,62 @@
+<html><head>
+<meta charset="UTF-8">
+<title>Humanity Embed</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        padding-top: 15vh;
+    }
+    input[type="text"] {
+        width: 50%;
+        padding: 10px;
+        font-size: 16px;
+        border-radius: 12px;
+        border: 1px solid #ccc;
+    }
+    button {
+        padding: 10px 20px;
+        font-size: 16px;
+        margin-left: 5px;
+        cursor: pointer;
+        border-radius: 8px;
+    }
+    label {
+        display: block;
+        margin-top: 15px;
+        font-size: 14px;
+        color: #333;
+    }
+</style>
+</head>
+<body>
+    <br>
+    <br>
+    
+    <br>
+    <br>
+    
+    
+    <input type="text" id="query" placeholder="Search the pre-AI internet">
+    <button onclick="searchHumanity()">Search</button>
+    
+<script>
+function searchHumanity() {
+    let query = document.getElementById("query").value.trim();
+    let filter = document.getElementById("filterAI").checked;
+    if (filter) {
+        query += " before:2022";
+    }
+    let url = "https://www.google.com/search?q=" + encodeURIComponent(query) + "&udm=14";
+    window.location.href = url;
+}
+document.getElementById("query").addEventListener("keypress", function(event) {
+    if (event.key === "Enter") {
+        searchHumanity();
+    }
+});
+</script>
+
+
+
+</body></html>
