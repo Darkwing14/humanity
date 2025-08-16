@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Humanity Redirect</title>
+  <script>
+    window.onload = () => {
+      const params = new URLSearchParams(window.location.search);
+      const query = params.get("q");
+      const filterresults = params.get("filterresults");
+
+      if (!query) {
+        document.body.innerHTML = "<h1>Missing query (?q=)</h1>";
+        return;
+      }
+
+      // Defaults: filterresults = true on the main GUI,
+      // but false by default for redirect links.
+      let filteredQuery = query;
+      if (filterresults && filterresults.toLowerCase() === "true") {
+        filteredQuery += " before:2022";
+      }
+
+      // Encode for URL
+      const url = "https://www.google.com/search?udm=14&q=" +
+                  encodeURIComponent(filteredQuery);
+
+      window.location.replace(url);
+    };
+  </script>
+</head>
+<body>
+  <p>Redirecting…</p>
+</body>
+</html>
